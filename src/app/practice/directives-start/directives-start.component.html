@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
+      <br><br>
+      <ul class="list-group">
+        <div *ngIf="onlyOdd">
+          <li class="list-group-item" *ngFor="let oddNumber of oddNumbers" [ngClass]="{odd: oddNumber % 2 !== 0}" [ngStyle]="{backgroundColor: oddNumber % 2 !== 0 ? 'pink' : 'transparent'}">
+            {{oddNumber}} </li>
+        </div>
+        <div *ngIf="!onlyOdd">
+          <li class="list-group-item" *ngFor="let evenNumber of evenNumbers" [ngClass]="{odd: evenNumber % 2 !== 0}" [ngStyle]="{backgroundColor: evenNumber % 2 !== 0 ? 'pink' : 'transparent'}">
+            {{evenNumber}} </li>
+        </div>
+        <!--structural directive *ngIf can be used without * using an ng-template and attribute binding  -->
+        <ng-template [ngIf]="!onlyOdd">
+          <li class="list-group-item" *ngFor="let evenNumber of evenNumbers" [ngClass]="{odd: evenNumber % 2 !== 0}" [ngStyle]="{backgroundColor: evenNumber % 2 !== 0 ? 'pink' : 'transparent'}">
+            {{evenNumber}} </li>
+        </ng-template>
+        <hr>
+        <div *appUnless="onlyOdd">
+          <li class="list-group-item" *ngFor="let evenNumber of evenNumbers" [ngClass]="{odd: evenNumber % 2 !== 0}" [ngStyle]="{backgroundColor: evenNumber % 2 !== 0 ? 'pink' : 'transparent'}">
+            {{evenNumber}} </li>
+        </div>
+
+      </ul>
+      <p appBasicHighlight> Style with the directive</p>
+      <!-- <p appBetterDirective [defaultColor]="'yellow'" [highlightColor]="'red'"> Style with the better directive using renderer..</p> -->
+      <p [appBetterDirective]="'red'" defaultColor="yellow"> Style with the better directive using renderer..</p>
+      <ng-template [ngIf]="onlyOdd">
+        <p>Only odd</p>
+      </ng-template>
+      <hr>
+      <div [ngSwitch]="value">
+        <p *ngSwitchCase="5">Value is 5</p>
+        <p *ngSwitchCase="10">Value is 10</p>
+        <p *ngSwitchCase="15">Value is 15</p>
+        <p *ngSwitchDefault>Value is Default</p>
+      </div>
+    </div>
+  </div>
+</div>

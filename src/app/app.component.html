@@ -1,0 +1,64 @@
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-xs-12"> -->
+<!-- <app-servers></app-servers>    -->
+<!-- <div app-servers></div>  selection by attributes-->
+<!-- <div class="app-servers"></div> selection by class-->
+<!--assessment 1  -->
+<!-- <app-warning-alert></app-warning-alert>
+             <div app-success-alert ></div> -->
+<!-- <app-data-binding> </app-data-binding> -->
+<!-- directives  -->
+<!-- <app-directives></app-directives> -->
+<!-- </div>
+    </div>
+</div> -->
+
+<!--Component Data binding module  -->
+<!-- <app-cmp-databinding></app-cmp-databinding> -->
+<!--Component Data binding module Assessment -->
+<!-- <app-game-control (sendNumbers)="onEmit($event)"></app-game-control>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div *ngFor="let number of numbers">
+                <app-even *ngIf="number%2 === 0; else ODD " [number]="number"></app-even>
+                <ng-template #ODD>
+                    <app-odd [number]="number"></app-odd>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!--Directives Deep dive  -->
+<!-- <app-directives-start></app-directives-start> -->
+
+<!--Services and dependency injection  -->
+<!-- <app-services-start></app-services-start> -->
+
+<!-- Service Assignment -->
+<!-- <app-services-assignment></app-services-assignment> -->
+
+<!--Routing Start  -->
+<!-- <app-routing-start></app-routing-start> -->
+
+<!-- Course Project without Routing -->
+<!-- <app-header (selection)="onSelection($event)"></app-header>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <app-recipes *ngIf="selection === 'recipes'"></app-recipes>
+            <app-shopping-list *ngIf="selection === 'shopping_list'"></app-shopping-list>
+        </div>
+    </div>
+</div> -->
+
+<!-- Course Project with Routing -->
+ <!-- <app-header></app-header>  -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

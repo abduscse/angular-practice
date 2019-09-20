@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <p> Add a Form with the following Inputs (and Validators) </p>
+      <p> 1) Mail address (should not be empty and should be an email address)</p>
+      <p> 2) A Dropdown which allows the user to select from three different Subscriptions ("Basic", "Advanced", "Pro")
+        Set "Advanced" as Default</p>
+      <p> 3) A Password field (should not be empty)</p>
+      <p> 4) A Submit Button</p>
+      <p> Display a warning message if the Form is invalid AND was touched. Display a warning message below each input
+        if it's invalid. Upon submitting the form, you should simply print the Value of the Form to the Console.
+        Optionally, display it in your template.</p>
+      <hr>
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" name="email" id="email" class="form-control" required email ngModel #email="ngModel">
+          <p class="error" *ngIf="email.invalid && email.touched">valid email is required.</p>
+        </div>
+        <div class="form-group">
+          <label>Subscription</label>
+          <select name="subscription" id="subscription" class="form-control" [ngModel]="defaultSubscription">
+            <option value="Basic">Basic</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Pro">Pro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" name="password" id="password" class="form-control" required ngModel
+            #password="ngModel">
+          <p class="error" *ngIf="password.invalid && password.touched">valid password is required.</p>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <hr>
+  <div class="row" *ngIf="isSubmmitted">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <h4>Your Data</h4>
+      <p>Email: {{userData.email}}</p>
+      <p>Subscription: {{userData.subscription}}</p>
+      <p>Password: {{userData.password}}</p>
+    </div>
+  </div>
+</div>
