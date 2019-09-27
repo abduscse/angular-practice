@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pipes-start.component.css']
 })
 export class PipesStartComponent implements OnInit {
-
+  appStatus = new Promise((resolve, reject) => {
+    setInterval(() => {
+      resolve('stable');
+    }, 2000);
+  });
 
   servers = [
     {
@@ -34,6 +38,7 @@ export class PipesStartComponent implements OnInit {
       started: new Date(15, 1, 2017)
     }
   ];
+  filtredStatus = '';
   constructor() { }
 
   ngOnInit() {
@@ -44,6 +49,14 @@ export class PipesStartComponent implements OnInit {
       'list-group-item-warning': server.status === 'offline',
       'list-group-item-danger': server.status === 'critical'
     };
+  }
+  onAddServer() {
+    this.servers.push({
+      instanceType: 'small',
+      name: 'Another Testing Environment Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    });
   }
 
 }

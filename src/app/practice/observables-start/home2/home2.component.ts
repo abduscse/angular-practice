@@ -51,7 +51,7 @@ export class Home2Component implements OnInit, OnDestroy {
       () => {
         console.log('Completed..');
       }
-      );
+    );
   }
 
   ngOnDestroy() {

@@ -34,14 +34,14 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         let RecipeName = '';
         let imagePath = '';
         let description = '';
-        let ingredients = new FormArray([]);
+        const ingredients = new FormArray([]);
         if (this.editMode) {
             const recipeSelected = this.recipeService.getRecipeByIndex(this.id);
             RecipeName = recipeSelected.name;
             imagePath = recipeSelected.imagePath;
             description = recipeSelected.description;
             if (recipeSelected.ingredients) {
-                for (let ingredient of recipeSelected.ingredients) {
+                for (const ingredient of recipeSelected.ingredients) {
                     ingredients.push(
                         new FormGroup({
                             'name': new FormControl(ingredient.name, Validators.required),
@@ -66,7 +66,9 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         if (this.editMode) {
             this.recipeService.updateRecipeByIndex(this.id, this.recipeForm.value);
         } else {
-            this.recipeService.addNewRecipe(this.recipeForm.value);
+            this.recipeService.addNewRecipe(this.recipeForm.value).subscribe(response => {
+                console.log(response);
+            });
         }
         this.router.navigate(['../'], { relativeTo: this.route });
     }

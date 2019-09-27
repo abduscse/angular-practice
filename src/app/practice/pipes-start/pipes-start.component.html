@@ -1,18 +1,25 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="filtredStatus">
+        <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
+      </div>
+      <hr>
+      <hr>
+      <p>App Status: {{ appStatus | async }}</p>
       <ul class="list-group">
         <li
           class="list-group-item"
-          *ngFor="let server of servers"
+          *ngFor="let server of servers| filter: filtredStatus : 'status' | sort:'name'"
           [ngClass]="getStatusClasses(server)">
           <span
             class="badge">
             {{ server.status }}
           </span>
-          <strong>{{ server.name }}</strong> | 
-          {{ server.instanceType | uppercase}} | 
-          {{ server.started | date}}
+          <strong>{{ server.name | shorten:15 }}</strong> | 
+          {{ server.instanceType | uppercase | reverse }} | 
+          {{ server.started | date: 'fullDate' | uppercase }}
         </li>
       </ul>
     </div>

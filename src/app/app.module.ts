@@ -65,6 +65,14 @@ import { FormTdAssignmentComponent } from './practice/form-td-assignment/form-td
 import { FormsReactiveStartComponent } from './practice/forms-reactive-start/forms-reactive-start.component';
 import { FormsReactiveAssignmentComponent } from './practice/forms-reactive-assignment/forms-reactive-assignment.component';
 import { PipesStartComponent } from './practice/pipes-start/pipes-start.component';
+import { ShortenPipe } from './shared/shorten.pipe';
+import { FilterPipe } from './shared/filter.pipe';
+import { ReversePipe } from './shared/reverse.pipe';
+import { SortPipe } from './shared/sort.pipe';
+import { HttpStartComponent } from './practice/http-start/http-start.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './practice/http-start/auth-interceptor.service';
+import { LoggingInterceptorService } from './practice/http-start/logging-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, serverComponent, ServersComponent, WarningAlertComponent, SuccessAlertComponent,
@@ -76,18 +84,18 @@ import { PipesStartComponent } from './practice/pipes-start/pipes-start.componen
     RoutingStartComponent, HomeComponent, UsersComponent, UserComponent, Servers2Component, EditServer2Component,
     Server2Component, PageNotFoundComponent, ErrorPageComponent, RecipeNotSelectedComponent, RecipeEditComponent,
     ObservablesStartComponent, User2Component, Home2Component, FormTdStartComponent, FormTdAssignmentComponent,
-    FormsReactiveStartComponent,
-    FormsReactiveAssignmentComponent,
-    PipesStartComponent
+    FormsReactiveStartComponent, FormsReactiveAssignmentComponent, PipesStartComponent, ShortenPipe,
+    FilterPipe, ReversePipe, SortPipe, HttpStartComponent
   ],
   imports: [
-    BrowserModule, ReactiveFormsModule, FormsModule, AppRoutingModule
+    BrowserModule, ReactiveFormsModule, FormsModule, AppRoutingModule, HttpClientModule
   ],
   providers: [
     // import using angular 6+ new syntax..
     // UsersService,
     AccountsService, LoggingService, CounterService, ServersService2, AuthGaurd, AuthService, CanDeactivateGaurd,
-    ServerResolver
+    ServerResolver, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

@@ -24,6 +24,7 @@ import { FormTdAssignmentComponent } from './practice/form-td-assignment/form-td
 import { FormsReactiveStartComponent } from './practice/forms-reactive-start/forms-reactive-start.component';
 import { FormsReactiveAssignmentComponent } from './practice/forms-reactive-assignment/forms-reactive-assignment.component';
 import { PipesStartComponent } from './practice/pipes-start/pipes-start.component';
+import { HttpStartComponent } from './practice/http-start/http-start.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -71,6 +72,7 @@ const appRoutes: Routes = [
     { path: 'forms-reactive-start', component: FormsReactiveStartComponent },
     { path: 'forms-reactive-assignment', component: FormsReactiveAssignmentComponent },
     { path: 'pipes-start', component: PipesStartComponent },
+    { path: 'http-start', component: HttpStartComponent },
     // { path: 'not-found', component: PageNotFoundComponent },
     {
         path: 'not-found',
